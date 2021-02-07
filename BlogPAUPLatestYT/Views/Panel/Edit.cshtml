@@ -1,0 +1,35 @@
+﻿@model PostViewModel
+@{ 
+
+}
+<div>
+    <form asp-controller="Panel" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <input asp-for="Id" type="hidden" />
+        <div>
+            <lable>Naslov</lable>
+            <input asp-for="Title" />
+        </div>
+        <div>
+            <lable>Kratki opis</lable>
+            <input asp-for="ShortDescription" />
+        </div>
+        <div>
+            <lable>Detaljan opis</lable>
+            <input asp-for="LongDescription" />
+        </div>
+        <div>
+            <label>Vidljivost</label>
+            <input asp-for="Visible" />
+        </div>
+        <div>
+            <label>Image</label>
+            <input asp-for="Image" />
+        </div>
+        <div>
+            <label>Smjer faksa</label>
+            <select asp-for="SmjeroviFaksas" />
+        </div>
+        
+        <input type="submit" value="Submit" />
+    </form>
+</div>
