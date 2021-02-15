@@ -22,9 +22,10 @@ namespace BlogPAUPLatestYT.Controllers
             _fileManager = fileManager;
 
         }
-        public IActionResult Index()
+        public IActionResult Index(string category)
         {
-            var posts = _repo.GetAllPosts();
+            var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() : _repo.GetAllPosts(category);
+            //boolean?true:false
             return View(posts);
         }
         public IActionResult Post(int id)

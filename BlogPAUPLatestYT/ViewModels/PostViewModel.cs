@@ -19,11 +19,13 @@ namespace BlogPAUPLatestYT.ViewModels
         public bool Visible { get; set; }
         public int Counter { get; set; }
         public IFormFile Image { get; set; }
+        public string Tags { get; set; }
 
         public CollageDirections CollageDirections { get; set; }
         //Ako ne radi ovdje sam zajebo
         public IdentityUser IdentityUser { get; set; }
         public string NazivKreatora { get; set; }
+        public string Category { get; set; }
         //public Post.CollageDirections SmeroviFakultet { get; set; }
         //public ICollection<SmjeroviFaksa> SmjeroviFaksas { get; set; }
 

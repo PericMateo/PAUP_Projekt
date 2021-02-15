@@ -48,8 +48,9 @@ namespace BlogPAUPLatestYT.Controllers
                   ShortDescription=post.ShortDescription,
                   LongDescription=post.LongDescription,
                   Visible=post.Visible,
-                  CollageDirections=post.CeollegeDirections,
-                  NazivKreatora=post.NazivKreatora
+                  Category=post.Category,
+                  NazivKreatora=post.NazivKreatora,
+                  Tags=post.Tags
 
                   
                   
@@ -78,8 +79,9 @@ namespace BlogPAUPLatestYT.Controllers
                 LongDescription = vm.LongDescription,
                 Visible = vm.Visible,
                 Image = await _fileManager.SaveImage(vm.Image),
-                CeollegeDirections=vm.CollageDirections,
-                NazivKreatora=userIDD
+                Category=vm.Category,
+                NazivKreatora=userIDD,
+                Tags=vm.Tags
                 
 
                 //Ako ne valja ukloniti smjerove faksa

@@ -29,6 +29,10 @@ namespace BlogPAUPLatestYT.Models
         }
         public string NazivKreatora { get; set; }
 
+        public string Description { get; set; }
+        public string Tags { get; set; }
+        public string Category { get; set; }
+
         //public SmjeroviFaksa SmjeroviFaksa { get; set; }
 
         //public ICollection<SmjeroviFaksa> SmjeroviFaksas { get; set; }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Post>
 
 @{ 
-
+    
 }
 <h2>Home Page</h2>
 <form action="/" method="get">
@@ -11,11 +11,11 @@
     <ul>
         @foreach(var post in Model)
         {
-            @if (!post.Visible == true) { <li>
+            @if (!post.Visible == false) { <li>
     <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
         @post.Title
         @post.DateOfCreation
-        @post.CeollegeDirections
+        @post.Category
         @post.NazivKreatora
     </a>
 

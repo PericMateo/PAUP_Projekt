@@ -23,16 +23,30 @@
             <input asp-for="Visible" />
         </div>
         <div>
+            <label>Tags</label>
+            <input asp-for="Tags" />
+        </div>
+        <div>
             <label>Image</label>
             <input asp-for="Image" />
         </div>
+        <!--
         <div>
             <label>Naziv smjera</label>
-            <select asp-for="CollageDirections" asp-items="@Html.GetEnumSelectList<Post.CollageDirections>()"></select>
+            <select asp-for="CollageDirections" asp-items="//Html.GetEnumSelectList<Post.CollageDirections>()"></select>
+        </div>
+        -->
+        <div>
+            <label>Naziv Smjera</label>
+            <select asp-for="Category" >
+                <option value="Racunarstvo">Racunarstvo</option>
+                <option value="Menadzment">Menadzment</option>
+                <option value="OdrziviRazvoj">Odrzivi razvoj</option>
+            </select>
         </div>
         <div>
-            
-            <input asp-for="NazivKreatora" type="hidden"  />
+
+            <input asp-for="NazivKreatora" type="hidden" />
         </div>
         <input type="submit" value="Submit" />
     </form>
