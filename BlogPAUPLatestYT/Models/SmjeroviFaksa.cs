@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 
 namespace BlogPAUPLatestYT.Models
 {
-    public class SmjeroviFaksa
+   /* public class SmjeroviFaksa
     {
         public int Id { get; set; }
         public string NazivSmjera { get; set; }
+        
+        
     }
+   */
 }

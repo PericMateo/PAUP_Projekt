@@ -1,4 +1,5 @@
 ﻿@model PostViewModel
+ 
 @{ 
 
 }
@@ -26,10 +27,13 @@
             <input asp-for="Image" />
         </div>
         <div>
-            <label>Smjer faksa</label>
-            <select asp-for="SmjeroviFaksas" />
+            <label>Naziv smjera</label>
+            <select asp-for="CollageDirections" asp-items="@Html.GetEnumSelectList<Post.CollageDirections>()"></select>
         </div>
-        
+        <div>
+            
+            <input asp-for="NazivKreatora" type="hidden"  />
+        </div>
         <input type="submit" value="Submit" />
     </form>
 </div>

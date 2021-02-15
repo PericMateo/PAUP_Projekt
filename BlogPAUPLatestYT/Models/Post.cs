@@ -17,7 +17,17 @@ namespace BlogPAUPLatestYT.Models
         public bool Visible { get; set; }
         public int Counter { get; set; }
         public string Image { get; set; }
-        public IdentityUser IdentityUser { get; set; }
+        public virtual IdentityUser IdentityUser { get; set; }
+        public CollageDirections CeollegeDirections { get; set; }
+
+        public enum CollageDirections 
+        {
+            Racunarstvo,
+            Menadzment,
+            Odrzivi
+
+        }
+        public string NazivKreatora { get; set; }
 
         //public SmjeroviFaksa SmjeroviFaksa { get; set; }
 
@@ -25,15 +35,16 @@ namespace BlogPAUPLatestYT.Models
 
         //public ICollection<SmjeroviFaksa> SmjeroviFaksas { get; set; }
 
-        public enum SmjeroviFaksa
-        {
-            [Display(Name="Racunarstvo")]
-            FirstValue,
-            [Display(Name = "Menadzment")]
-            SecondValue,
-            [Display(Name = "Odrzivi Razvoj")]
-            ThirdValue,
+        /* public enum SmjeroviFaksa
+         {
+             [Display(Name="Racunarstvo")]
+             FirstValue,
+             [Display(Name = "Menadzment")]
+             SecondValue,
+             [Display(Name = "Odrzivi Razvoj")]
+             ThirdValue,
 
-        }
+         }
+        */
     }
 }

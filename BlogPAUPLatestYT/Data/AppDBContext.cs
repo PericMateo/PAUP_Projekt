@@ -16,7 +16,7 @@ namespace BlogPAUPLatestYT.Data
 
         }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<SmjeroviFaksa> SmjeroviFaksas { get; set; }
+        //public DbSet<SmjeroviFaksa> SmjeroviFaksas { get; set; }
         
         
         

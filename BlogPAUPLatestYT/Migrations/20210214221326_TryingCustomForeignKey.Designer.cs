@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogPAUPLatestYT.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20210207150336_NajnovijiSmjer")]
-    partial class NajnovijiSmjer
+    [Migration("20210214221326_TryingCustomForeignKey")]
+    partial class TryingCustomForeignKey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace BlogPAUPLatestYT.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("CeollegeDirections")
+                        .HasColumnType("int");
+
                     b.Property<int>("Counter")
                         .HasColumnType("int");
 
@@ -41,6 +44,9 @@ namespace BlogPAUPLatestYT.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LongDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NazivKreatora")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShortDescription")
@@ -57,26 +63,6 @@ namespace BlogPAUPLatestYT.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("BlogPAUPLatestYT.Models.SmjeroviFaksa", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("NazivSmjera")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("SmjeroviFaksas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -284,13 +270,6 @@ namespace BlogPAUPLatestYT.Migrations
                     b.Navigation("IdentityUser");
                 });
 
-            modelBuilder.Entity("BlogPAUPLatestYT.Models.SmjeroviFaksa", b =>
-                {
-                    b.HasOne("BlogPAUPLatestYT.Models.Post", null)
-                        .WithMany("SmjeroviFaksas")
-                        .HasForeignKey("PostId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -340,11 +319,6 @@ namespace BlogPAUPLatestYT.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BlogPAUPLatestYT.Models.Post", b =>
-                {
-                    b.Navigation("SmjeroviFaksas");
                 });
 #pragma warning restore 612, 618
         }

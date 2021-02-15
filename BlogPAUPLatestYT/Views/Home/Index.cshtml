@@ -4,18 +4,24 @@
 
 }
 <h2>Home Page</h2>
-<img src="~/Content/Static/PAUPIMAGE.jpg" />
+<form action="/" method="get">
+    <input type="text" name="search" value="" />
+</form>
 <div>
     <ul>
         @foreach(var post in Model)
         {
-        <li>
-            <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
-                @post.Title 
-                @post.DateOfCreation
-            </a>
-            
-        </li>
+            @if (!post.Visible == true) { <li>
+    <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+        @post.Title
+        @post.DateOfCreation
+        @post.CeollegeDirections
+        @post.NazivKreatora
+    </a>
+
+
+</li> }
+        
         }
     </ul>
 </div>

@@ -4,6 +4,7 @@ using BlogPAUPLatestYT.Models;
 using BlogPAUPLatestYT.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,14 @@ namespace BlogPAUPLatestYT.Controllers
                   ShortDescription=post.ShortDescription,
                   LongDescription=post.LongDescription,
                   Visible=post.Visible,
+                  CollageDirections=post.CeollegeDirections,
+                  NazivKreatora=post.NazivKreatora
+
+                  
+                  
+
                   //SmjeroviFaksa treba izbrisat ak ne radi
-                  SmjeroviFaksas=post.SmjeroviFaksas
+                  //SmjeroviFaksas=post.SmjeroviFaksas
 
                   
                   
@@ -58,16 +65,25 @@ namespace BlogPAUPLatestYT.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(PostViewModel vm)
         {
+
+            var userIDD = User.Identity.Name;
+            //var nazivKorisnika = int.Parse(userIDD);
+            
             var post = new Post
             {
+                
                 Id = vm.Id,
                 Title = vm.Title,
                 ShortDescription = vm.ShortDescription,
                 LongDescription = vm.LongDescription,
                 Visible = vm.Visible,
                 Image = await _fileManager.SaveImage(vm.Image),
+                CeollegeDirections=vm.CollageDirections,
+                NazivKreatora=userIDD
+                
+
                 //Ako ne valja ukloniti smjerove faksa
-                SmjeroviFaksas=vm.SmjeroviFaksas
+                //SmjeroviFaksas=vm.SmjeroviFaksas
             };
             if (post.Id > 0)
             {
