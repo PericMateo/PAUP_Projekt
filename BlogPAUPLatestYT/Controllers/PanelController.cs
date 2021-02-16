@@ -30,6 +30,7 @@ namespace BlogPAUPLatestYT.Controllers
         public IActionResult Index()
         {
             var posts = _repo.GetAllPosts();
+            
             return View(posts);
         }
         
@@ -50,7 +51,8 @@ namespace BlogPAUPLatestYT.Controllers
                   Visible=post.Visible,
                   Category=post.Category,
                   NazivKreatora=post.NazivKreatora,
-                  Tags=post.Tags
+                  Tags=post.Tags,
+                  Counter=post.Counter
 
                   
                   
@@ -81,7 +83,8 @@ namespace BlogPAUPLatestYT.Controllers
                 Image = await _fileManager.SaveImage(vm.Image),
                 Category=vm.Category,
                 NazivKreatora=userIDD,
-                Tags=vm.Tags
+                Tags=vm.Tags,
+                Counter=vm.Counter
                 
 
                 //Ako ne valja ukloniti smjerove faksa

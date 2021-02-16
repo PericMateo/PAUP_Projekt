@@ -26,12 +26,16 @@ namespace BlogPAUPLatestYT.Controllers
         {
             var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() : _repo.GetAllPosts(category);
             //boolean?true:false
+            
             return View(posts);
         }
         public IActionResult Post(int id)
         {
             var post = _repo.GetPost(id);
+            post.Counter++;
+            _repo.SaveChangesAsync().GetAwaiter().GetResult();
             return View(post);
+            
         }
         
         [HttpGet("/Image/{image}")]

@@ -3,6 +3,7 @@
     ViewBag.Title = Model.Title;
     ViewBag.ShortDescription = Model.ShortDescription;
     ViewBag.Keywords = $"{Model.Tags?.Replace(","," ")} {Model.Category}";
+    
 
  }
 
@@ -22,5 +23,7 @@
 <p>@Model.DateOfCreation</p>
 <p></p>
 <p>@Model.NazivKreatora</p>
+<p></p>
+<p>@Model.Counter</p>
 
 
