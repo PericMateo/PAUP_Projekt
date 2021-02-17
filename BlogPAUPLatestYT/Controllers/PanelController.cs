@@ -9,23 +9,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+ 
 
 namespace BlogPAUPLatestYT.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class PanelController : Controller
     {
 
         private readonly IRepository _repo;
         private readonly IFileManager _fileManager;
+       
 
         public PanelController(
             IRepository repo,
             IFileManager fileManager
+            
             )
         {
             _repo = repo;
             _fileManager = fileManager;
+            
         }
         public IActionResult Index()
         {
@@ -33,7 +37,7 @@ namespace BlogPAUPLatestYT.Controllers
             
             return View(posts);
         }
-        
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int? id)
         {
@@ -53,18 +57,12 @@ namespace BlogPAUPLatestYT.Controllers
                   NazivKreatora=post.NazivKreatora,
                   Tags=post.Tags,
                   Counter=post.Counter
-
-                  
-                  
-
                   //SmjeroviFaksa treba izbrisat ak ne radi
-                  //SmjeroviFaksas=post.SmjeroviFaksas
-
-                  
-                  
+                  //SmjeroviFaksas=post.SmjeroviFaksa           
                 });
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(PostViewModel vm)
         {
@@ -111,8 +109,9 @@ namespace BlogPAUPLatestYT.Controllers
             _repo.RemovePost(id);
             await _repo.SaveChangesAsync(); 
             return RedirectToAction("Index");
-
-
         }
+        
+
+        
     }
 }

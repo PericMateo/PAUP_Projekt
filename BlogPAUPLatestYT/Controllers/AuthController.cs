@@ -12,9 +12,12 @@ namespace BlogPAUPLatestYT.Controllers
     public class AuthController : Controller
     {
         private SignInManager<IdentityUser> _signInManager;
-        public AuthController(SignInManager<IdentityUser> signInManager)
+        private UserManager<IdentityUser> _userManager;
+
+        public AuthController(SignInManager<IdentityUser> signInManager,UserManager<IdentityUser> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -39,14 +42,23 @@ namespace BlogPAUPLatestYT.Controllers
                 }
                 */
                 var result = await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, false);
-                if (result.Succeeded)
+                if (!result.Succeeded)
                 {
+                    return View(vm);
                     
+                }
+                var user = await _userManager.FindByNameAsync(vm.UserName);
+                var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+                if (isAdmin)
+                {
                     return RedirectToAction("Index", "Panel");
                 }
+                
             }
-            ModelState.AddModelError("", "Invalid login attempt");
-            return View(vm);
+            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            //ModelState.AddModelError("", "Invalid login attempt");
+
             //var result=await _signInManager.PasswordSignInAsync(vm.UserName,vm.Password,false,false);
             //return RedirectToAction("Index", "Home");
         }
@@ -56,6 +68,35 @@ namespace BlogPAUPLatestYT.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index","Home");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View(new RegisterViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+            var user = new IdentityUser
+            {
+                UserName = vm.Email,
+                Email = vm.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, "password");
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(vm);
+           
         }
     }
 }

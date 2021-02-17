@@ -1,4 +1,5 @@
 ﻿using BlogPAUPLatestYT.Models;
+using BlogPAUPLatestYT.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace BlogPAUPLatestYT.Data.Repository
     {
         Post GetPost(int id);
         List<Post> GetAllPosts();
-        List<Post> GetAllPosts(string category);
+        IndexViewModel GetAllPosts(string category,string search);
+        //IndexViewModel GetAllPosts(string category);
         void AddPost(Post post);
         void UpdatePost(Post post);
         void RemovePost(int id);

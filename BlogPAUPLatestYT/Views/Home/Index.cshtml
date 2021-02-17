@@ -1,26 +1,38 @@
-﻿@model IEnumerable<Post>
+﻿@model IndexViewModel
 
 @{ 
-    
+
 }
-<h2>Home Page</h2>
-<form action="/" method="get">
-    <input type="text" name="search" value="" />
-</form>
-<div>
+
+<div class="main-img">
+    <h2 class="title">Mev Novosti</h2>
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <input class="search" type="text" name="search" value="@Model.Search" />
+        <input type="hidden" name="category" value="@Model.Category" />
+
+
+        <button type="submit">Pretrazi</button>
+    </form>
+</div>
+<div class="container">
     <ul>
-        @foreach(var post in Model)
+        @foreach(var post in Model.Posts)
         {
-            @if (!post.Visible == false) { <li>
-    <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
-        @post.Title
-        @post.DateOfCreation
-        @post.Category
-        @post.NazivKreatora
-    </a>
+            @if (!post.Visible == false) 
+            { 
+                <li class="list-post">
+                    <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+
+                     @post.Title
+                     @post.DateOfCreation
+                     @post.Category
+                     @post.NazivKreatora
+
+                    </a>
 
 
-</li> }
+                </li> 
+              }
         
         }
     </ul>

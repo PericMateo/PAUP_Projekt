@@ -1,4 +1,6 @@
 ﻿using BlogPAUPLatestYT.Models;
+using BlogPAUPLatestYT.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,27 @@ namespace BlogPAUPLatestYT.Data.Repository
         }
 
         //Ovdje ako nesto ne radi greska je u converziji stringToInt
-        public List<Post> GetAllPosts(string category)
+        public IndexViewModel GetAllPosts(string category,string search)
         {
-            return _ctx.Posts.Where(post => post.Category.ToLower().Equals(category.ToLower())).ToList();
+            //return _ctx.Posts.Where(post => post.Category.ToLower().Equals(category.ToLower())).ToList();
+            Func<Post, bool> InCategory = (post) => { return post.Category.ToLower().Equals(category.ToLower()); };
+            var query = _ctx.Posts.AsNoTracking().AsQueryable();
+
+            if (!String.IsNullOrEmpty(category))
+                query= query.Where(x => x.Category.Equals(category));
+            //query = query.Where(x => InCategory(x));
+            //query = query.Where(x => I);
+
+            if (!String.IsNullOrEmpty(search))
+                query = query.Where(x => x.Title.Contains(search)
+                || x.ShortDescription.Contains(search) 
+                || x.LongDescription.Contains(search));
+
+            return new IndexViewModel
+            {
+                Posts=query.ToList()
+            };
+            
         }
 
         public Post GetPost(int id)

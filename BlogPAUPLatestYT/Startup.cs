@@ -55,6 +55,7 @@ namespace BlogPAUPLatestYT
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IFileManager, FileManager>();
             
+            
 
             //services.AddAuthentication();
             
@@ -75,6 +76,7 @@ namespace BlogPAUPLatestYT
             app.UseRouting();
             app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
+            
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapGet("/", async context =>

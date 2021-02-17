@@ -1,1 +1,103 @@
-﻿
+﻿nav {
+    background-color:#110b0b;
+    height: auto;
+    width: 100%;
+    text-align: left;
+    
+}
+a{
+    text-decoration:none;
+    color:#ffdfdf;
+    
+}
+a:hover{
+    text-decoration:underline
+}
+nav a{
+    display:inline-block;
+    height:100%;
+    padding:10px;
+    outline:auto;
+    
+}
+p {
+    padding: 10px;
+    font-family: Candara;
+    font-size: 20px;
+    color: #f9fab4;
+    
+}
+body{
+    margin:0;
+    background-color:burlywood;
+}
+.main-img {
+    position: relative;
+    height: 500px;
+    background-image: url('../Content/Static/florian-klauer-mk7D-4UCfmg-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.title{
+    position:absolute;
+    font-size:40px;
+    left:50%;
+    transform:translateX(-50%);
+    text-shadow: 0 0 8px black;
+    top:80px;
+}
+.search {
+    color: #000;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: pink;
+    font-size: 18px;
+    border-bottom: 2px solid pink;
+}
+.container{
+     color: black;
+    background-color: black;
+    border: none;
+    outline: none;
+    color: pink;
+    font-size: 18px;
+    border-bottom: 2px solid pink;
+    
+}
+.sign-in-form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .sign-in-form div {
+        max-width: 200px;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+.list-post{
+    border-top:thick;
+    border-bottom:thick;
+    border-color:snow;
+}
+
+.naslov-posta {
+    position: absolute;
+    color: black;
+    font-size: 40px;
+    margin-bottom:auto;
+    text-shadow: 0 0 8px black;
+}
+.post-img{
+    top:auto;
+    margin-top:auto;
+}
+

@@ -2,11 +2,13 @@
 using BlogPAUPLatestYT.Data.FileManager;
 using BlogPAUPLatestYT.Data.Repository;
 using BlogPAUPLatestYT.Models;
+using BlogPAUPLatestYT.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace BlogPAUPLatestYT.Controllers
 {
@@ -22,12 +24,20 @@ namespace BlogPAUPLatestYT.Controllers
             _fileManager = fileManager;
 
         }
-        public IActionResult Index(string category)
+        public IActionResult Index(string category,string search)
         {
-            var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() : _repo.GetAllPosts(category);
+            //var vm = new IndexViewModel
+            //{
+            //    Posts = string.IsNullOrEmpty(category) ?
+            //  _repo.GetAllPosts() : 
+            // _repo.GetAllPosts(category)
+            //};
+
             //boolean?true:false
-            
-            return View(posts);
+
+            //return View(vm);
+            var vm = _repo.GetAllPosts(category,search);
+            return View(vm);
         }
         public IActionResult Post(int id)
         {
@@ -44,5 +54,8 @@ namespace BlogPAUPLatestYT.Controllers
             var mime = image.Substring(image.LastIndexOf('.')+1);
             return new FileStreamResult(_fileManager.ImageStream(image),$"image/{mime}");
         }
+
+        
+      
     }
 }
